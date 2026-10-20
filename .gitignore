@@ -1,0 +1,43 @@
+## Ignore Visual Studio SSDT sqlproj specific temporary files, build results, etc
+##
+##
+## Get latest from https://github.com/github/gitignore/blob/master/SSDT-sqlproj.gitignore
+# Build output
+bin/
+obj
+.venv/
+venv/
+ENV/
+
+# DACPAC files
+*.dacpac
+
+# Publish profiles (optional, if environment-specific)
+*.publish.xml
+
+# SQL Server debug files
+*.dbmdl
+*.sqlcmdvars
+
+# Visual Studio settings
+.vs/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Backup files
+*.bak
+*.log
+
+# SQL
+*.db
+
+.RData
+.Rhistory
+.Rproj.user/
+*.grib
+.venv/
+templates/temperature_files/
