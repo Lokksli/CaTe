@@ -30,12 +30,13 @@
                 <span id="yearEnd">1997</span>
             </p>
 
-            <div class="range-slider">
+            <div class="range-slider"> 
                 <input type="range" id="startSlider" min="1993" max="2025" value="1993">
                 <input type="range" id="endSlider" min="1993" max="2025" value="1997">
             </div>
 
-            <button id="applyButton">
+
+            <button id="applyButton" class="apply_button">
                 Apply
             </button>
 
@@ -46,9 +47,27 @@
                 <p id="coldest_month">Coldest month: </p>
             </div>
 
+
+            <p class="compare_years_p">
+                Compare
+                years: <span id="yearStartComparison">1993</span> -
+                <span id="yearEndComparison">1997</span>
+            </p>
+
+            <div class="range-slider"> 
+                <input type="range" id="startSliderComparison" min="1993" max="2025" value="1993">
+                <input type="range" id="endSliderComparison" min="1993" max="2025" value="1997">
+            </div>
+
+            <button id="applyButtonComparison" class="apply_button">
+                Compare
+            </button>
+
+
         </div>
         <div id="graph" class="line">
-            <iframe src="/temperature"></iframe>
+            <iframe src="/temperature" class="first_graph" id="firstGraph"></iframe>
+            <iframe class="second_graph" id="secondGraph"></iframe>
         </div>
 
     </div>

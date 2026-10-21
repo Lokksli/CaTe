@@ -4,14 +4,21 @@ const applyButton = document.getElementById('applyButton');
 const startSlider = document.getElementById('startSlider');
 const endSlider = document.getElementById('endSlider');
 
+const startSliderComparison = document.getElementById('startSliderComparison');
+const endSliderComparison = document.getElementById('endSliderComparison');
+
 const highestTempElement = document.getElementById('highest_temp');
 const lowestTempElement = document.getElementById('lowest_temp');
 
 const hottestMonthElement = document.getElementById('hottest_month');
-const coldestMonthElement = document.getElementById('coldest_month');
+const coldestMonthElement = document.getElementById('coldest_month'); 
+
+const applyButtonComparison = document.getElementById('applyButtonComparison')
 
 
-function updateYears() {
+
+
+function updateYears() { // Updating slider
     let start = Number(startSlider.value);
     let end = Number(endSlider.value);
     console.log(endSlider.value)
@@ -37,9 +44,34 @@ startSlider.addEventListener('input', updateYears);
 endSlider.addEventListener('input', updateYears);
 
 
+function updateYearsComparison() { // Updating comparison slider
+    let start = Number(startSliderComparison.value);
+    let end = Number(endSliderComparison.value);
+    console.log(endSliderComparison.value)
+
+    if (start > end) {
+        if (document.activeElement === startSliderComparison) {
+            endSliderComparison.value = start;
+            end = start;
+        } else {
+            startSliderComparison.value = end;
+            start = end;
+        }
+    }
 
 
-applyButton.addEventListener('click', async () => {
+    document.getElementById('yearStartComparison').textContent = start;
+    document.getElementById('yearEndComparison').textContent = end;
+    console.log(start);
+    console.log(end);
+}
+
+startSliderComparison.addEventListener('input', updateYearsComparison);
+endSliderComparison.addEventListener('input', updateYearsComparison);
+
+
+
+applyButton.addEventListener('click', async () => {             // Function for API request to flask on pressing button
     const res = await fetch('/daily_average_temperature', {
         method: 'POST',
         headers: {
@@ -55,14 +87,39 @@ applyButton.addEventListener('click', async () => {
     const data = await res.json();
 
     if (res.ok) {
-        document.getElementById('graph').innerHTML =
-            `<iframe src="${data.url}"></iframe>`;
-
+        document.getElementById('firstGraph').src = data.url;
         highestTempElement.textContent =
             `Highest range temperature: ${data.stats.highest} °C (${data.stats.highest_date})`;
         lowestTempElement.textContent =
             `Lowest range temperature:  ${data.stats.lowest} °C (${data.stats.lowest_date})`;
+        hottestMonthElement.textContent =
+            `Hottest month: ${data.stats.hottest_month} °C (${data.stats.hottest_month_date})`;
+        coldestMonthElement.textContent =
+            `Coldest month: ${data.stats.coldest_month} °C (${data.stats.coldest_month_date})`;
     } else {
         alert(data.error || 'Something went wrong');
     }
 });
+
+applyButtonComparison.addEventListener('click', async () => {
+    const res = await fetch('/compare_years', {
+        method: 'POST', 
+        headers: {
+            'Content-Type': 'application/json'
+        }, 
+        body: JSON.stringify({
+            start_year_comparison: startSliderComparison.value,
+            end_year_comparison: endSliderComparison.value
+        })
+    });
+
+    const data = await res.json(); 
+
+    if (res.ok) {
+        console.log(`${data.url_start_year}`)
+        document.getElementById('firstGraph').src = data.url_start_year;
+        document.getElementById('secondGraph').src = data.url_end_year;
+    }
+
+
+})
