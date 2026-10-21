@@ -18,27 +18,25 @@
     <div class="container">
         <div class="desc">
             <h1 class="headd">Data analysis</h1>
-            <label>
-                <input type="checkbox" id="dayAverageCheckbox">
-                Show daily average
-            </label>
-            
 
+            <div class="filter">
+                <label>
+                    <input type="checkbox" id="dayAverageCheckbox">
+                    Show daily average
+                </label>
 
-            <p>
-                Years: <span id="yearStart">1993</span> -
-                <span id="yearEnd">1997</span>
-            </p>
+                <p>
+                    Years: <span id="yearStart">1993</span> -
+                    <span id="yearEnd">1997</span>
+                </p>
 
-            <div class="range-slider"> 
-                <input type="range" id="startSlider" min="1993" max="2025" value="1993">
-                <input type="range" id="endSlider" min="1993" max="2025" value="1997">
+                <div class="range-slider">
+                    <input type="range" id="startSlider" min="1993" max="2025" value="1993">
+                    <input type="range" id="endSlider" min="1993" max="2025" value="1997">
+                </div>
+
+                <button id="applyButton" class="apply_button">Apply</button>
             </div>
-
-
-            <button id="applyButton" class="apply_button">
-                Apply
-            </button>
 
             <div class="temperature_info">
                 <p id="highest_temp">Highest range temperature: </p>
@@ -47,23 +45,23 @@
                 <p id="coldest_month">Coldest month: </p>
             </div>
 
+            <div class="filter">
+                <p>
+                    Compare years: <span id="yearStartComparison">1993</span> -
+                    <span id="yearEndComparison">1997</span>
+                </p>
+                <label>
+                    <input type="checkbox" id="compareDayAverageCheckbox">
+                    Show daily average
+                </label>
 
-            <p class="compare_years_p">
-                Compare
-                years: <span id="yearStartComparison">1993</span> -
-                <span id="yearEndComparison">1997</span>
-            </p>
+                <div class="range-slider">
+                    <input type="range" id="startSliderComparison" min="1993" max="2025" value="1993">
+                    <input type="range" id="endSliderComparison" min="1993" max="2025" value="1997">
+                </div>
 
-            <div class="range-slider"> 
-                <input type="range" id="startSliderComparison" min="1993" max="2025" value="1993">
-                <input type="range" id="endSliderComparison" min="1993" max="2025" value="1997">
+                <button id="applyButtonComparison" class="apply_button">Compare</button>
             </div>
-
-            <button id="applyButtonComparison" class="apply_button">
-                Compare
-            </button>
-
-
         </div>
         <div id="graph" class="line">
             <iframe src="/temperature" class="first_graph" id="firstGraph"></iframe>

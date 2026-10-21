@@ -86,7 +86,8 @@ def compare_years():
     data = request.get_json()
     start_year = str(data.get('start_year_comparison'))
     end_year = str(data.get('end_year_comparison'))
-    mode = 'daily'
+    daily_average = data.get('daily_average', False)
+    mode = 'daily' if daily_average else 'raw'
 
     if not start_year.isnumeric() or not end_year.isnumeric():                                      # Checking if data is correct
         start_year = "1993"

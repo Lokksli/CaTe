@@ -75,7 +75,7 @@ p <- ggplot(
 ) +
   geom_line(
     color = "#2C7FB8",
-    linewidth = 0.7
+    linewidth = 0.4
   ) +
   labs(
     title = if (mode == "daily") {

@@ -19,46 +19,59 @@ body {
 
 h1 {
     margin: 0;
-    padding: 15px;
+    padding: 10px 15px;
     text-align: center;
-    height: 60px;
 }
 
+/* ---------- layout: one graph (default) ---------- */
 .container {
-    margin-top: 80px;
+    margin-top: 0;
+    padding: 0 1%;
     display: flex;
+    flex-direction: row;          /* filters left, graph right */
+    gap: 20px;
 }
 
 .desc {
     width: 30%;
-    padding-left: 1%;
 }
 
 .headd {
+    padding: 0 0 10px 0;
     text-align: left;
-}
-
-.line {
-    display: flex;
-    gap: 10px;
-    width: 70%;
+    font-size: 1.6rem;
 }
 
 #graph {
-    flex: 1;
-    width: 100%;
-    min-height: 0;
+    display: flex;
+    gap: 10px;
+    flex: 1;                      /* takes all remaining space */
+    min-width: 0;
 }
 
-iframe {
-    display: block;
+.first_graph,
+.second_graph {
+    flex: 1;
+    min-width: 0;
     width: 100%;
     height: 800px;
     border: none;
 }
 
+.second_graph {
+    display: none;                /* hidden until a comparison exists */
+}
+
+/* ---------- filters ---------- */
+.filter {
+    margin-bottom: 20px;
+}
+
+.filter p {
+    margin: 10px 0;
+}
+
 .range-slider {
-    position: relative;
     width: 250px;
     display: flex;
 }
@@ -68,23 +81,49 @@ iframe {
 }
 
 .temperature_info {
-    position: relative;
-    display: block;
-    padding-top: 2%;
+    margin-bottom: 20px;
 }
 
-.compare_years_p {
-    padding-top: 3%;
+.temperature_info p {
+    margin: 6px 0;
 }
 
 .apply_button {
-    margin-top: 1.5%;
+    margin-top: 8px;
 }
 
+/* ---------- layout: comparison (two graphs) ---------- */
+.container.compare-mode {
+    flex-direction: column;       /* filters on top, graphs below */
+    gap: 10px;
+}
 
-.first_graph,
-.second_graph {
-    flex: 1;          /* each takes half of the row */
-    min-width: 0;     /* lets them shrink instead of overflowing */
-    border: none;
+.container.compare-mode .desc {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 0 50px;                  /* space between the three groups */
+}
+
+.container.compare-mode .headd {
+    width: 100%;                  /* heading gets its own row */
+}
+
+.container.compare-mode .filter,
+.container.compare-mode .temperature_info {
+    margin-bottom: 10px;
+}
+
+.container.compare-mode #graph {
+    flex: none;
+    width: 100%;
+}
+
+.container.compare-mode .second_graph {
+    display: block;
+}
+
+.container.compare-mode iframe {
+    height: 600px;
 }

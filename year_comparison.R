@@ -45,10 +45,10 @@ if (mode == "daily") {
 
 
 year_frame_comparison <- function(start_year, end_year, temp) {
-  start_data <- temp %>%
+  start_data <- plot_data %>%
     filter(year(date) == start_year)
   
-  end_data <- temp %>%
+  end_data <- plot_data %>%
     filter(year(date) == end_year)
   
   list(start = start_data, end = end_data)
@@ -71,11 +71,11 @@ p_start <- ggplot(
 ) +
   geom_line(
     color = "#2C7FB8",
-    linewidth = 0.2
+    linewidth = 0.4
   ) +
   labs(
     title = if (mode == "daily") {
-      "Uzhhorod Daily Average Temperature"
+      paste0("Uzhhorod Daily Average Temperature")
     } else {
       "Uzhhorod Temperature Over Time"
     },
@@ -93,7 +93,7 @@ p_end <- ggplot(
 ) +
   geom_line(
     color = "#2C7FB8",
-    linewidth = 0.2
+    linewidth = 0.4
   ) +
   labs(
     title = if (mode == "daily") {

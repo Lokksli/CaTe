@@ -14,6 +14,8 @@ const hottestMonthElement = document.getElementById('hottest_month');
 const coldestMonthElement = document.getElementById('coldest_month'); 
 
 const applyButtonComparison = document.getElementById('applyButtonComparison')
+const container = document.querySelector('.container'); 
+const compareDailyAverage = document.getElementById('compareDayAverageCheckbox');
 
 
 
@@ -87,7 +89,9 @@ applyButton.addEventListener('click', async () => {             // Function for 
     const data = await res.json();
 
     if (res.ok) {
+        container.classList.remove('compare-mode');
         document.getElementById('firstGraph').src = data.url;
+        document.getElementById('secondGraph').removeAttribute('src');
         highestTempElement.textContent =
             `Highest range temperature: ${data.stats.highest} °C (${data.stats.highest_date})`;
         lowestTempElement.textContent =
@@ -108,6 +112,7 @@ applyButtonComparison.addEventListener('click', async () => {
             'Content-Type': 'application/json'
         }, 
         body: JSON.stringify({
+            daily_average: compareDailyAverage.checked,
             start_year_comparison: startSliderComparison.value,
             end_year_comparison: endSliderComparison.value
         })
@@ -117,6 +122,7 @@ applyButtonComparison.addEventListener('click', async () => {
 
     if (res.ok) {
         console.log(`${data.url_start_year}`)
+        container.classList.add('compare-mode');  
         document.getElementById('firstGraph').src = data.url_start_year;
         document.getElementById('secondGraph').src = data.url_end_year;
     }
