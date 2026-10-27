@@ -65,6 +65,9 @@ if (!is.null(start_date) && !is.null(end_date)) {
 }
 
 
+plot_data <- plot_data %>%
+  mutate(temperature_c = round(temperature_c, 4))
+
 # ggplot graphic generation
 p <- ggplot(
   plot_data,
@@ -79,9 +82,9 @@ p <- ggplot(
   ) +
   labs(
     title = if (mode == "daily") {
-      "Uzhhorod Daily Average Temperature"
+      paste("Uzhhorod Daily Average Temperature ", start_date, "-", end_date)
     } else {
-      "Uzhhorod Temperature Over Time"
+      paste("Uzhhorod Temperature Over Time", start_date, "-", end_date)
     },
     x = "Date",
     y = "Temperature (°C)"

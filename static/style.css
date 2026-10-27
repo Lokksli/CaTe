@@ -88,6 +88,15 @@ h1 {
     margin: 6px 0;
 }
 
+.temperature_info_compare {
+    margin-bottom: 20px;
+}
+
+.temperature_info_compare p {
+    margin: 6px 0;
+}
+
+
 .apply_button {
     margin-top: 8px;
 }
@@ -111,9 +120,11 @@ h1 {
 }
 
 .container.compare-mode .filter,
-.container.compare-mode .temperature_info {
+.container.compare-mode .temperature_info,
+.container.compare-mode .temperature_info_compare {
     margin-bottom: 10px;
 }
+
 
 .container.compare-mode #graph {
     flex: none;

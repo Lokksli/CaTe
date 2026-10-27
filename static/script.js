@@ -13,6 +13,13 @@ const lowestTempElement = document.getElementById('lowest_temp');
 const hottestMonthElement = document.getElementById('hottest_month');
 const coldestMonthElement = document.getElementById('coldest_month'); 
 
+const highestTempComparisonElement = document.getElementById('highest_temp_comparison');
+const lowestTempComparisonElement = document.getElementById('lowest_temp_comparison');
+
+const hottestMonthComparisonElement = document.getElementById('hottest_month_comparison');
+const coldestMonthComparisonElement = document.getElementById('coldest_month_comparison'); 
+
+
 const applyButtonComparison = document.getElementById('applyButtonComparison')
 const container = document.querySelector('.container'); 
 const compareDailyAverage = document.getElementById('compareDayAverageCheckbox');
@@ -125,6 +132,14 @@ applyButtonComparison.addEventListener('click', async () => {
         container.classList.add('compare-mode');  
         document.getElementById('firstGraph').src = data.url_start_year;
         document.getElementById('secondGraph').src = data.url_end_year;
+        highestTempComparisonElement.textContent =
+            `Highest range temperature: ${data.stats.highest} °C (${data.stats.highest_date})`;
+        lowestTempComparisonElement.textContent =
+            `Lowest range temperature:  ${data.stats.lowest} °C (${data.stats.lowest_date})`;
+        hottestMonthComparisonElement.textContent =
+            `Hottest month: ${data.stats.hottest_month} °C (${data.stats.hottest_month_date})`;
+        coldestMonthComparisonElement.textContent =
+            `Coldest month: ${data.stats.coldest_month} °C (${data.stats.coldest_month_date})`;
     }
 
 

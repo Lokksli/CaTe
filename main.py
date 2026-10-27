@@ -111,10 +111,13 @@ def compare_years():
     if result.returncode != 0:
         return jsonify({'error': result.stderr}), 500
 
+    with open('templates/stats_comparison.json') as f:
+        stats = json.load(f)
 
     return jsonify({
         'url_start_year': '/start_year_comparison',
-        'url_end_year': '/end_year_comparison'
+        'url_end_year': '/end_year_comparison',
+        'stats': stats
     })
 
 
